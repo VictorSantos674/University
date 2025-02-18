@@ -1,0 +1,72 @@
+Redes neurais artificiais são modelos computacionais inspirados no funcionamento do cérebro humano, usadas para resolver problemas complexos de reconhecimento de padrões, aprendizado de máquina e inteligência artificial (IA). Elas são compostas por unidades chamadas "neurônios" ou "nós", organizadas em camadas, e cada neurônio imita o comportamento dos neurônios biológicos.
+
+### Estrutura de uma Rede Neural
+
+Uma rede neural típica consiste em:
+
+1. **Camada de Entrada (Input Layer)**:
+   - Recebe os dados de entrada.
+   - Cada neurônio desta camada corresponde a uma característica ou atributo dos dados.
+   
+2. **Camadas Ocultas (Hidden Layers)**:
+   - Fazem a maior parte do processamento.
+   - Cada camada tem neurônios que recebem e processam os dados das camadas anteriores. Esse processamento inclui a aplicação de uma função de ativação que permite a introdução de não-linearidade no sistema.
+   
+3. **Camada de Saída (Output Layer)**:
+   - Fornece a saída final da rede, que pode ser uma decisão, uma previsão, ou uma classificação.
+   - Cada neurônio nesta camada representa uma possível saída.
+
+### Funcionamento
+
+- Cada conexão entre neurônios tem um **peso**, que é ajustado durante o processo de treinamento. O valor de cada peso determina a força da conexão entre os neurônios.
+- Os neurônios também possuem um **viés** (bias), que ajuda a deslocar a função de ativação e aumenta a flexibilidade do modelo.
+- Quando um dado é inserido na camada de entrada, ele percorre as conexões, passando por funções de ativação em cada camada oculta, e produz uma saída final.
+- A rede aprende ajustando os pesos e vieses das conexões através de um algoritmo de treinamento, como o **backpropagation**, que minimiza a diferença entre a saída prevista pela rede e a saída real (no caso de redes supervisionadas).
+
+### Tipos de Redes Neurais
+
+1. **Perceptron**:
+   - Um dos modelos mais simples, composto por uma única camada.
+   - Utilizado para problemas de classificação binária.
+
+2. **Multilayer Perceptron (MLP)**:
+   - Tem várias camadas (incluindo camadas ocultas) e pode resolver problemas mais complexos.
+   - Usa o algoritmo de backpropagation para ajustar os pesos.
+
+3. **Redes Neurais Convolucionais (CNN)**:
+   - Projetadas para processar dados com uma estrutura de grade, como imagens.
+   - Usam convoluções em vez de multiplicações lineares para identificar padrões em diferentes regiões da imagem.
+
+4. **Redes Neurais Recorrentes (RNN)**:
+   - São ideais para dados sequenciais, como séries temporais ou dados de áudio.
+   - Possuem conexões que formam loops, permitindo que informações sejam armazenadas como "memória".
+
+5. **Redes Neurais Profundas (Deep Neural Networks)**:
+   - Contêm muitas camadas ocultas e são conhecidas como "redes profundas" devido à sua profundidade.
+   - Usadas para tarefas complexas como visão computacional e processamento de linguagem natural.
+
+### Aplicações de Redes Neurais
+
+- **Reconhecimento de Imagens**: Usadas para classificar e identificar objetos em imagens (por exemplo, redes neurais convolucionais são amplamente utilizadas em sistemas de visão computacional).
+- **Processamento de Linguagem Natural**: Compreensão e geração de texto em sistemas como chatbots ou assistentes virtuais.
+- **Previsão e Análise de Dados**: Previsão de séries temporais, como os preços de ações, e análise de grandes volumes de dados.
+- **Sistemas de Recomendação**: Usados para personalizar recomendações de produtos, músicas, filmes, etc.
+
+### Treinamento
+
+O treinamento de uma rede neural envolve:
+1. **Apresentar os dados de entrada e saída esperada** (se for supervisionada).
+2. **Propagação** do erro, onde o erro entre o valor previsto e o valor esperado é calculado.
+3. **Ajuste dos pesos e vieses** com base no erro, usando métodos como gradiente descendente.
+
+O treinamento continua até que o erro seja minimizado ou outro critério de parada seja atingido.
+
+### Desafios
+
+- **Overfitting**: Ocorre quando a rede neural se ajusta demais aos dados de treinamento, perdendo a capacidade de generalizar para novos dados.
+- **Grande necessidade de dados**: Redes neurais, especialmente as redes profundas, precisam de grandes quantidades de dados para se treinarem adequadamente.
+- **Alto poder computacional**: Redes neurais profundas exigem muitos recursos computacionais, como GPUs (Unidades de Processamento Gráfico), para serem treinadas eficientemente.
+
+### Conclusão
+
+Redes neurais são uma parte crucial da inteligência artificial moderna, sendo aplicadas em diversas áreas, como visão computacional, processamento de linguagem natural, jogos e mais. Elas oferecem flexibilidade e poder para resolver problemas complexos que outras abordagens de aprendizado de máquina não conseguem solucionar.

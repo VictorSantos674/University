@@ -1,0 +1,113 @@
+Ativ ED2 Part3
+
+### Construindo a Árvore AVL passo a passo
+
+### Inserção Inicial: 30
+
+	- Raíz: 30 se torna a raiz da árvore.
+
+      30
+
+### Inserção de 20
+
+	- Posição: 20 é menor que 30, então é inserido à esquerda de 30.
+
+      30
+     /
+    20
+
+### Inserção de 40
+
+	- Posição: 40 é maior que 30, então é inserido à direita de 30.
+
+      30
+     / \
+    20 40
+
+### Inserção de 10
+
+	- Posição: 10 é menor que 20, então é inserido à esquerda de 20.
+
+      30
+     / \
+    20 40
+   /
+  10
+
+### Inserção de 25
+
+	- Posição: 25 é maior que 20 e menor que 30, então é inserido à direita de 20.
+
+      30
+     / \
+    20 40
+   / \
+  10 25
+
+### Inserção de 35
+
+	- Posição: 35 é maior que 30 e menor que 40, então é inserido à direita de 30.
+
+      30
+     / \
+    20 40
+   / \
+  10 25
+       \
+        35
+
+### Inserção de 50
+
+	- Posição: 50 é maior que 40, então é inserido à direita de 40.
+
+      30
+     / \
+    20 40
+   / \  \
+  10 25 50
+
+### Inserção de 5
+
+	- Posição: 5 é menor que 10, então é inserido à esquerda de 10. 
+
+	- Desbalanceamento: Após a inserção de 5, o nó 20 tem fator de balanceamento -2, indicando que a subárvore esquerda está 2 níveis mais profunda que a direita. **É necessária uma rotação dupla à direita.**
+
+### Rotação Dupla à Direita em 20:
+
+      30
+     / \
+    10 40
+   / \  \
+  5  20 50
+     / \
+    8  25
+
+	- Justificativa: A rotação dupla à direita é necessária para rebalancear a árvore, pois o nó 20 está desbalanceado à esquerda e seu filho esquerdo (10) tem fator de balanceamento 1. 
+
+### Resumo das Rotações:
+
+Uma rotação dupla à direita: Realizada no nó 20 após a inserção de 5.
+
+### Árvore AVL Final:
+
+      30
+     / \
+    10 40
+   / \  \
+  5  20 50
+     / \
+    8  25
+
+	- Obs.: As rotações em árvores AVL garantem que a altura da árvore seja logarítmica em relação ao número de nós, o que é fundamental para manter a eficiência das operações de busca, inserção e remoção.
+
+### Análise:
+
+	- Balanceamento: A árvore final está balanceada, ou seja, a diferença de altura entre as subárvores esquerda e direita de qualquer nó é no máximo 1.
+
+	- Propriedades da Árvore AVL: A árvore construída respeita todas as propriedades de uma árvore AVL:
+    * É uma árvore binária de busca.
+    * O fator de balanceamento de cada nó é -1, 0 ou 1.
+
+Conclusão:
+
+Ao inserir os elementos na ordem especificada, foram realizadas as rotações necessárias para manter a propriedade de balanceamento da árvore AVL. A árvore final está corretamente construída e pronta para realizar operações de busca, inserção e remoção de forma eficiente.

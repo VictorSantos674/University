@@ -1,0 +1,123 @@
+AULA 3
+
+### **1. Introdução à Segurança em Bancos de Dados**
+
+A segurança de um banco de dados envolve a proteção contra ataques maliciosos, tanto intencionais quanto não intencionais. Com o aumento do uso da internet, sistemas se tornam mais vulneráveis a violações de dados. Portanto, os SGBDs (Sistemas de Gerenciamento de Banco de Dados) trazem uma camada de proteção importante para garantir a segurança.
+
+#### **Áreas envolvidas na segurança de dados:**
+- **Roubo e fraude**: Impedir que dados sejam roubados ou manipulados de forma fraudulenta.
+- **Perda de confidencialidade e privacidade**: Garantir que informações confidenciais estejam protegidas.
+- **Perda de integridade**: Evitar que os dados sejam alterados indevidamente.
+- **Perda de disponibilidade**: Assegurar que o sistema esteja disponível para os usuários autorizados.
+
+#### **Tipos de acessos não autorizados:**
+- **Leitura não autorizada**: Quando um usuário acessa dados sem permissão.
+- **Modificação não autorizada**: Alteração de dados por usuários não autorizados.
+- **Destruição não autorizada**: Eliminação de dados sem permissão.
+
+#### **Responsabilidades do DBA (Administrador de Banco de Dados):**
+O DBA tem poderes para criar contas de usuários, conceder ou revogar privilégios e atribuir diferentes níveis de segurança. Ele pode, por exemplo, limitar o acesso de empregados a determinadas funcionalidades, como visto no exemplo de uma empresa onde apenas alguns funcionários podem alterar preços ou acessar dados financeiros.
+
+---
+
+### **2. Controles de Segurança**
+
+#### **Controles Computacionais:**
+Esses controles são implementados diretamente no sistema de gerenciamento de banco de dados e incluem:
+- **Autenticação e Autorização**: Verificação da identidade do usuário e controle de acesso aos recursos.
+- **Views (Visões)**: Criação de visões restritas que mostram apenas dados relevantes para o usuário, evitando acesso a informações sensíveis.
+- **Backup e Recovery**: Implementação de mecanismos para garantir que dados possam ser recuperados em caso de falhas.
+- **Criptografia**: Proteção de dados por meio de técnicas de criptografia para evitar acesso não autorizado.
+- **Auditoria**: Registro de todas as ações realizadas no banco de dados, permitindo verificar possíveis violações de segurança.
+
+#### **Controles Não Computacionais:**
+Além dos controles computacionais, existem práticas de segurança física, como:
+- **Posicionamento seguro de equipamentos**: Proteção física do hardware onde o banco de dados está armazenado.
+- **Controle de acesso físico**: Controle sobre quem pode fisicamente acessar os servidores de banco de dados.
+
+---
+
+### **3. Controle de Acesso**
+
+Existem dois tipos de controle de acesso:
+- **Controle de Acesso Discreto (DAC)**: Neste modelo, os privilégios são flexíveis. Um usuário pode ter diferentes direitos sobre diferentes objetos.
+- **Controle de Acesso Mandatório (MAC)**: Baseado em níveis de classificação. Os dados são rotulados, e cada usuário tem um nível de acesso. Este modelo é hierárquico e rígido.
+
+#### **Privilégios no SQL:**
+Em SQL, os privilégios são atribuídos por meio de comandos como:
+- **SELECT**: Permite ler dados de uma tabela.
+- **INSERT**: Permite inserir novos registros.
+- **UPDATE**: Permite modificar registros existentes.
+- **DELETE**: Permite remover registros.
+
+---
+
+### **4. Usuários e Papéis (Roles)**
+
+#### **Usuários:**
+Cada usuário no banco de dados tem um identificador único (auth_ID) e pode receber privilégios específicos. O sistema também possui o conceito de `PUBLIC`, que representa todos os usuários.
+
+#### **Papéis (Roles):**
+Os papéis são conjuntos de privilégios que podem ser atribuídos a um ou mais usuários. Por exemplo, um papel `PapelVendedor` pode ser criado com certos privilégios, como acesso a tabelas de vendas, e esse papel pode ser atribuído a qualquer usuário com um único comando.
+
+A criação de um papel segue a sintaxe:
+```sql
+CREATE ROLE nome_do_papel;
+GRANT SELECT, INSERT ON tabela TO nome_do_papel;
+```
+
+---
+
+### **5. Autorização e Permissões de Acesso**
+
+#### **Comando GRANT:**
+O comando `GRANT` é usado para conceder permissões a um usuário ou papel. Exemplo:
+```sql
+GRANT SELECT ON tabela TO usuario1;
+```
+Esse comando concede ao usuário `usuario1` permissão para fazer consultas (SELECT) na tabela especificada.
+
+#### **Comando REVOKE:**
+O comando `REVOKE` remove permissões previamente concedidas. Exemplo:
+```sql
+REVOKE SELECT ON tabela FROM usuario1;
+```
+Esse comando remove o privilégio de consulta na tabela para o `usuario1`.
+
+#### **Opção WITH GRANT OPTION:**
+Esta cláusula permite que o usuário que recebeu um privilégio possa repassar esse privilégio a outros. Exemplo:
+```sql
+GRANT SELECT ON tabela TO usuario1 WITH GRANT OPTION;
+```
+
+---
+
+### **6. Visões (Views)**
+
+#### **O que é uma Visão (View)?**
+Uma **visão** é uma tabela virtual derivada de uma ou mais tabelas. Ela permite criar uma visão personalizada dos dados, ocultando colunas ou registros sensíveis, simplificando consultas e melhorando a segurança.
+
+#### **Criação de uma View:**
+Para criar uma visão, usamos o comando `CREATE VIEW`. Exemplo:
+```sql
+CREATE VIEW v_pedido AS
+SELECT numerodopedido, nomedaempresa
+FROM pedidos;
+```
+Essa visão `v_pedido` mostra apenas o número do pedido e o nome da empresa da tabela `pedidos`.
+
+#### **Atualização de Visões:**
+Uma visão sempre reflete as atualizações feitas nas tabelas subjacentes. Isso significa que se os dados de uma tabela base forem alterados, a visão automaticamente reflete essas alterações.
+
+#### **Exclusão de Visões:**
+Se uma visão não for mais necessária, ela pode ser removida com o comando `DROP VIEW`.
+
+---
+
+### **Questões para Praticar**
+
+1. **Qual a diferença entre Controle de Acesso Discreto (DAC) e Controle de Acesso Mandatório (MAC)?**
+2. **O que são papéis (roles) e como eles podem facilitar a gestão de privilégios em um banco de dados?**
+3. **Explique como a opção `WITH GRANT OPTION` pode impactar a segurança do banco de dados.**
+4. **Dê um exemplo de como criar uma visão em SQL que mostre apenas dados específicos de uma tabela.**
+5. **Como o comando `GRANT` difere do comando `REVOKE` em termos de permissões de acesso?**

@@ -1,0 +1,120 @@
+## Relacionamento das Classes
+
+### 1. **Jogador**
+- **Atributos**:
+  - `proximo`: Referência para o próximo jogador, indicando o turno subsequente.
+  - `territorios`: Lista de territórios que pertencem ao jogador.
+  - `cartaTerritorio`: Carta de território associada ao jogador.
+  - `cartaObjetivo`: Carta de objetivo associada ao jogador.
+
+- **Métodos**:
+  - `iniciarJogada()`: Método que inicia a jogada do jogador.
+  - `consultarObjetivo()`: Método para verificar o objetivo do jogador.
+
+- **Relacionamento**:
+  - **Jogador** tem um relacionamento com **Território**, onde ele pode ter uma lista de territórios sob seu controle.
+  - **Jogador** está diretamente relacionado com **Jogada**, onde cada jogador participa de uma jogada.
+  - **Jogador** também está relacionado com **CartaObjetivo**, pois cada jogador possui um objetivo a cumprir.
+
+---
+
+### 2. **Jogada**
+- **Atributos**:
+  - `fases`: Uma lista de fases que compõem a jogada.
+  - `verifCartaT`: Um processo de verificação da carta de território (omitido conforme o pedido).
+
+- **Métodos**:
+  - `executarFluxo()`: Método principal para executar o fluxo da jogada.
+  - `verificarObjetivoCumprido(cartaObjetivo)`: Verifica se o jogador cumpriu seu objetivo.
+  - `modificarComportamentoFase()`: Modifica o comportamento de uma fase específica.
+
+- **Relacionamento**:
+  - **Jogada** está diretamente relacionada a várias **Fases** (um-para-muitos) e a um jogador, que executa essa jogada.
+
+---
+
+### 3. **Fase**
+- **Métodos**:
+  - `executarFase()`: Método para executar as ações principais de uma fase no jogo.
+
+- **Relacionamento**:
+  - **Fase** faz parte de uma **Jogada**, onde uma jogada é composta por múltiplas fases.
+
+---
+
+### 4. **DistribuidorTerritorio**
+- **Atributos**:
+  - `cartas`: Lista de cartas de território.
+  - `territorios`: Lista de territórios a serem distribuídos.
+  - `jogadores`: Lista de jogadores.
+
+- **Métodos**:
+  - `calcularDistribuicao()`: Calcula a distribuição dos territórios entre os jogadores.
+  - `atribuirCartaTerritorio()`: Atribui uma carta de território a um jogador.
+  - `atribuirTerritoriosJogador()`: Atribui territórios para cada jogador.
+
+- **Relacionamento**:
+  - **DistribuidorTerritorio** está associado aos **Jogadores**, **Cartas de Território** (omitidas), e aos **Territórios**, sendo responsável por distribuir esses elementos entre os jogadores.
+
+---
+
+### 5. **Território**
+- **Atributos**:
+  - `nomeTerritorio`: Nome do território.
+  - `cor`: Cor que representa o território.
+  - `quantidadeTropas`: Número de tropas presentes no território.
+  - `vizinhos`: Lista de territórios adjacentes.
+  - `continente`: Continente ao qual o território pertence.
+
+- **Relacionamento**:
+  - **Território** pertence a um **Continente**, que agrupa vários territórios.
+  - Um **Território** pode estar relacionado a vários outros territórios como vizinhos (um-para-muitos com adjacências).
+
+---
+
+### 6. **Continente**
+- **Atributos**:
+  - `nome`: Nome do continente.
+  - `territorios`: Lista de territórios que pertencem ao continente.
+
+- **Relacionamento**:
+  - **Continente** está relacionado com **Território**, agrupando vários territórios sob sua jurisdição.
+
+---
+
+### 7. **VerificacaoCartaObjetivo**
+- **Métodos**:
+  - `consultarObjetivo()`: Método para consultar o objetivo de um jogador.
+  - `objetivoCumprido()`: Verifica se o jogador cumpriu o objetivo especificado.
+
+- **Relacionamento**:
+  - **VerificacaoCartaObjetivo** interage diretamente com **CartaObjetivo** para determinar se o objetivo foi alcançado.
+
+---
+
+### 8. **CartaObjetivo**
+- **Atributos**:
+  - `nomeCarta`: Nome da carta de objetivo.
+  - `objetivo`: Um array de **descricaoObjetivo**, detalhando o que precisa ser feito para cumprir o objetivo.
+
+- **Relacionamento**:
+  - **CartaObjetivo** contém múltiplas **descricaoObjetivo**, cada uma explicando os requisitos específicos para alcançar o objetivo.
+  - Está diretamente relacionada com **VerificacaoCartaObjetivo**, que verifica se o objetivo foi cumprido.
+
+---
+
+### 9. **descricaoObjetivo**
+- **Atributos**:
+  - `descricao`: Descrição textual do objetivo.
+
+- **Relacionamento**:
+  - **descricaoObjetivo** faz parte de **CartaObjetivo**, explicando os detalhes dos objetivos do jogador.
+
+---
+
+## Resumo dos Relacionamentos:
+- O **Jogador** possui territórios e participa de jogadas, nas quais várias fases ocorrem.
+- **Jogada** contém uma série de **Fases**, que podem ser modificadas dependendo da ação do jogador.
+- **DistribuidorTerritorio** é responsável pela distribuição dos territórios e cartas entre os jogadores.
+- **Território** faz parte de um **Continente** e pode ter vizinhos adjacentes.
+- **CartaObjetivo** contém descrições detalhadas do objetivo, sendo verificada pela **VerificacaoCartaObjetivo**.

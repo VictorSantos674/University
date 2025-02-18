@@ -1,0 +1,73 @@
+Ativ ED2 Part2
+
+### Analisando a Inserção do Nó 3 na Árvore AVL
+
+Árvore Atual:
+
+Após as inserções e a rotação simples à direita para balancear o nó 15, nossa árvore está da seguinte forma:
+
+      16
+     /  \
+    13  15
+   /  \
+  10  11
+ / \
+4   8
+
+Inserção do Nó 3:
+
+Localização: O nó 3 será inserido à esquerda do nó 10, pois 3 é menor que 10.
+
+Árvore Após a Inserção:
+
+      16
+     /  \
+    13  15
+   /  \
+  10  11
+ / \
+4   8
+ \
+  3
+
+### Análise do Balanceamento:
+
+	- Verificação: Após a inserção do nó 3, a altura da subárvore esquerda do nó 10 aumentou em 1. Precisamos verificar se isso causou algum desbalanceamento.
+
+	- Fator de Balanceamento: O fator de balanceamento de um nó é a diferença entre a altura de sua subárvore direita e a altura de sua subárvore esquerda.
+
+	- Nó 10: Agora, o nó 10 tem um fator de balanceamento de -2 (altura da subárvore direita = 1, altura da subárvore esquerda = 2). Isso indica que o nó 10 está desbalanceado.
+
+### Rotação Necessária:
+
+	- Rotação Dupla à Direita: Como o nó 10 está desbalanceado à esquerda e seu filho esquerdo (10) tem um fator de balanceamento de 1, precisamos realizar uma rotação dupla à direita.
+
+Etapas da Rotação Dupla à Direita:
+
+1. Rotação Simples à Esquerda no Filho Esquerdo: Realizamos uma rotação simples à esquerda no nó 10, tornando 8 a nova raiz da subárvore.
+
+2. Rotação Simples à Direita na Raiz: Realizamos uma rotação simples à direita no nó 10 (agora com o valor 8), tornando 8 a nova raiz da subárvore com raiz 13.
+
+### Árvore Final Após a Rotação Dupla à Direita:
+
+      16
+     /  \
+    8   15
+   / \  
+  4  10
+     / \
+    3  11
+
+### Explicação da Rotação Dupla à Direita:
+
+	- Objetivo: Restaurar o balanceamento da árvore, garantindo que a propriedade da árvore AVL seja mantida.
+
+	- Processo: A rotação dupla à direita envolve duas rotações simples: uma à esquerda no filho esquerdo do nó desbalanceado e uma à direita no próprio nó desbalanceado.
+
+	-Resultado: A árvore é rebalanceada, e todos os nós possuem um fator de balanceamento entre -1 e 1.
+
+### Conclusão:
+
+Após a inserção do nó 3 e a realização da rotação dupla à direita, a árvore AVL está novamente balanceada, garantindo a eficiência das operações de busca, inserção e remoção.
+
+	- Observação: As rotações em árvores AVL são essenciais para manter o balanceamento e garantir que a altura da árvore seja logarítmica em relação ao número de nós. Isso é fundamental para garantir um bom desempenho das operações na árvore.

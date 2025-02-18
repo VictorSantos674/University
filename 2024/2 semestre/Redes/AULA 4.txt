@@ -1,0 +1,113 @@
+AULA 4
+
+O documento trata do tema **Estratégias de Roteamento IP** e os conceitos de roteamento na camada de rede, que são fundamentais para garantir a entrega de pacotes de dados em uma rede interconectada.
+
+Vou abordar cada tópico de maneira detalhada e objetiva:
+
+### 1. **Objetivos do Roteamento IP**
+- **Entendimento das estratégias de roteamento:** Existem várias formas de roteamento, como estático, dinâmico e híbrido. Cada uma possui características distintas e é aplicada em diferentes situações.
+- **Fixação dos principais conceitos de roteamento:** A compreensão de termos como "tabelas de roteamento", "algoritmos de roteamento" e "protocolo de roteamento" é essencial para o entendimento de como a informação flui em uma rede.
+- **Diferenciação das estratégias de roteamento:** É importante saber quando usar roteamento estático, dinâmico ou híbrido e entender as vantagens e desvantagens de cada um.
+- **Uso de estratégias adequadas:** Escolher a estratégia certa depende da complexidade, estabilidade e tamanho da rede.
+
+### 2. **Conceito de Roteamento**
+O roteamento é o processo de encaminhar pacotes de dados de uma origem a um destino através de uma **rede interconectada** por roteadores. A interconexão de redes físicas por roteadores caracteriza a inter-rede, na qual os roteadores são responsáveis por:
+- **Receber datagramas** em diversas interfaces de rede.
+- **Escolher as melhores rotas** através dessas interfaces.
+- **Encaminhar os datagramas** por meio dessas interfaces até os destinos.
+
+### 3. **Entrega de Datagramas**
+Os datagramas IP são entregues de duas formas:
+- **Diretamente:** Quando a rede de destino está diretamente conectada ao roteador ou estação que possui o datagrama.
+- **Indiretamente (hop-by-hop):** Quando o datagrama precisa passar por vários roteadores até chegar ao destino final. Isso acontece em redes maiores.
+
+### 4. **Algoritmo de Roteamento**
+Um **algoritmo de roteamento** é o conjunto de procedimentos que decide por onde os pacotes de dados devem passar para alcançar o destino final. Ele:
+- Está presente em todos os roteadores e estações da inter-rede.
+- Ajuda a encontrar a melhor rota.
+- Considera diferentes métricas para determinar o caminho ideal.
+
+### 5. **Métricas de Roteamento**
+As métricas são **parâmetros qualitativos e operacionais** utilizados para determinar qual é a melhor rota entre várias disponíveis. Algumas métricas comuns incluem:
+- **Contagem de saltos (Hop Count):** Número de roteadores pelos quais o pacote passará até o destino.
+- **Retardo:** A latência ou o tempo que o pacote leva para chegar ao destino.
+- **Confiabilidade:** A taxa de sucesso da entrega de pacotes por uma rota.
+- **Taxa de transmissão:** A capacidade de largura de banda disponível em uma rota.
+- **Carga:** O grau de utilização de uma rota.
+- **Tamanho do datagrama:** Se o datagrama é muito grande, pode exigir fragmentação, o que pode afetar a rota escolhida.
+
+### 6. **Métrica de Rota**
+A **métrica de rota** é um número inteiro que indica a qualidade da rota. Quanto **menor o número**, **melhor a rota**. Os algoritmos de roteamento utilizam essas métricas para definir o **custo total** de cada rota e, assim, determinar a melhor opção.
+
+### 7. **Tabela de Roteamento**
+A **tabela de roteamento** é um componente vital dos roteadores e estações. Ela:
+- Contém informações sobre como alcançar **todas as redes físicas** na inter-rede.
+- Identifica as rotas para todos os destinos.
+- Indica o custo da rota, permitindo ao roteador escolher a **melhor rota** para cada destino.
+- Existe em **todos os roteadores** e também nas estações que participam do processo de roteamento.
+
+### 8. **Protocolo de Roteamento**
+Um **protocolo de roteamento** é o mecanismo responsável pela **atualização automática** das tabelas de roteamento. Ele:
+- Troca informações entre roteadores.
+- Atualiza a tabela com base nas mudanças operacionais da rede.
+- Permite que as tabelas de roteamento sejam **completas e consistentes** em todos os roteadores.
+
+### 9. **Diferença entre Algoritmo de Roteamento e Protocolo de Roteamento**
+O **algoritmo de roteamento** é a **lógica usada para calcular a melhor rota**, enquanto o **protocolo de roteamento** é o **mecanismo de comunicação** entre roteadores para **atualizar as tabelas** de roteamento.
+
+### 10. **Estratégias de Roteamento**
+Existem **três principais tipos de estratégias** para realizar o roteamento:
+
+#### a) **Roteamento Estático**
+- As **tabelas de roteamento** são configuradas manualmente pelo administrador da rede.
+- Não se adapta automaticamente às mudanças da rede, exigindo intervenção manual sempre que há alterações.
+- Adequado para redes pequenas e estáveis.
+- Comandos comuns para manipular rotas estáticas no Linux incluem:
+  - Adicionar rota: `route add -net 200.10.1.0 netmask 255.255.255.0 gw 192.168.0.254`
+  - Adicionar rota padrão: `route add default gw 192.168.0.1`
+  - Remover rota: `route del -net 200.10.1.0 netmask 255.255.255.0 gw 150.10.0.2`
+- Desvantagens: Processo lento e sujeito a erros humanos.
+
+#### b) **Roteamento Dinâmico**
+- As tabelas de roteamento são **atualizadas automaticamente** com base nas informações trocadas entre roteadores.
+- O protocolo de roteamento é responsável por essas atualizações.
+- Adequado para redes grandes, que estão em constante mudança.
+
+#### c) **Roteamento Híbrido**
+- Combina o **roteamento estático** com o **dinâmico**.
+- Utiliza roteamento estático para rotas previsíveis e roteamento dinâmico para rotas que exigem flexibilidade.
+- Beneficia-se da **eficiência do roteamento estático** e da **adaptabilidade do roteamento dinâmico**.
+
+---
+
+### **Resumo Detalhado:**
+
+#### - **Roteamento**: 
+O processo de encontrar a melhor rota para encaminhar pacotes de uma origem para um destino em uma inter-rede.
+
+#### - **Algoritmo de Roteamento**: 
+É o cálculo realizado para escolher a rota com base em métricas como contagem de saltos, retardo e confiabilidade.
+
+#### - **Métricas**: 
+Parâmetros usados para definir a qualidade das rotas, como contagem de saltos e confiabilidade. Quanto menor a métrica, melhor a rota.
+
+#### - **Tabela de Roteamento**: 
+Armazena as rotas e suas respectivas métricas. As decisões de roteamento são baseadas nas informações presentes nessa tabela.
+
+#### - **Protocolo de Roteamento**: 
+Atualiza automaticamente as tabelas de roteamento com base nas trocas de informações entre os roteadores.
+
+#### - **Estratégias de Roteamento**: 
+- **Estático**: Configuração manual das rotas. Adequado para redes pequenas e estáveis.
+- **Dinâmico**: As rotas são ajustadas automaticamente conforme a rede muda.
+- **Híbrido**: Combinação de roteamento estático e dinâmico, aproveitando os benefícios de ambos.
+
+---
+
+### **Referências:**
+- **Kurose, Ross. Redes de Computadores e a Internet.**
+- **Escola Superior de Redes. Arquitetura e Protocolos de Redes TCP/IP.**
+- **Escola Superior de Redes. Roteamento Avançado.**
+- **Dicionário Priberam da Língua Portuguesa.**
+
+Se precisar de mais detalhes sobre algum ponto específico ou uma explicação adicional sobre algoritmos ou protocolos de roteamento, estou à disposição!

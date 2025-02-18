@@ -1,0 +1,68 @@
+Planejamento Inicial de Estudos para o Seminário sobre SNMP:
+
+Cronograma de Estudos e Preparação
+
+1. Semana 1 (06/11 - 08/11/2024): Introdução e Planejamento
+   - Objetivos: 
+     - Formar o grupo e dividir responsabilidades.
+     - Entender o protocolo SNMP (Simple Network Management Protocol) e definir uma estrutura básica para a apresentação.
+   - Atividades:
+     - Reunião de Kickoff (06/11): Discutir as expectativas do seminário, revisar os requisitos, e criar uma lista de tópicos teóricos e práticos.
+     - Divisão de Tarefas:
+       - Membro 1: História e evolução do SNMP.
+       - Membro 2: Arquitetura do SNMP (gerentes, agentes, MIBs, etc.).
+       - Membro 3: Funcionalidades principais (traps, get/set requests).
+       - Membro 4: Segurança no SNMP (versões 1, 2, e 3).
+       - Membro 5: Preparar a demonstração prática com software apropriado (ex.: net-snmp, wireshark).
+   - Produto: Esboço inicial da apresentação e documento de planejamento detalhado.
+
+2. Semana 2 (09/11 - 12/11/2024): Pesquisa e Produção de Conteúdo
+   - Objetivos: 
+     - Elaborar conteúdo teórico.
+     - Desenvolver a demonstração prática.
+   - Atividades:
+     - Membros 1-3: Criação de slides detalhando o funcionamento do SNMP.
+     - Membro 4 & 5: Configuração de uma rede simulada para a demonstração e captura de pacotes SNMP usando Wireshark.
+
+3. Semana 3 (13/11 - 16/11/2024): Revisão e Aperfeiçoamento
+   - Objetivos: 
+     - Refinar slides e demonstração prática.
+     - Finalizar a apresentação completa e preparar-se para a sessão de perguntas e respostas.
+   - Atividades:
+     - Revisão em grupo do material.
+     - Ensaios gerais com feedback de todos os membros.
+     - Preparação para perguntas possíveis, como: “Quais são as limitações de segurança do SNMP?” ou “Como o SNMP v3 resolve problemas das versões anteriores?”
+
+ Estrutura Inicial da Apresentação
+
+1. Aspectos Teóricos (10 minutos)
+   - Introdução ao SNMP e sua importância.
+   - Explicação da arquitetura (componentes principais: gerentes, agentes, MIBs).
+   - Visão geral das versões do SNMP.
+   - Desafios e segurança no SNMP.
+
+2. Demonstração Prática (10 minutos)
+   - Configuração de uma rede SNMP simulada.
+   - Demonstração do monitoramento de um dispositivo e análise de traps com Wireshark.
+   - Exemplos de comandos SNMP usando net-snmp.
+
+3. Discussão e Q&A (5 minutos)
+   - Preparação de respostas para perguntas técnicas sobre o protocolo.
+   - Discussão das possíveis aplicações do SNMP em redes corporativas.
+
+---
+
+ Recomendações de Fontes e Referências para Pesquisa
+
+1. Livros e Manuais
+   - "Computer Networking: A Top-Down Approach" de James Kurose e Keith Ross – Capítulo sobre protocolos de aplicação.
+   - "SNMP, SNMPv2, SNMPv3, and RMON 1 and 2" de William Stallings.
+
+2. Recursos Online
+   - Documentação Oficial do SNMP: [https://www.net-snmp.org/](https://www.net-snmp.org/)
+   - Cisco SNMP Overview: Cisco oferece guias sobre como o SNMP é usado em ambientes corporativos.
+   - Wireshark User Guide: Para aprender a capturar e analisar pacotes SNMP.
+
+3. Ferramentas e Softwares para Demonstração
+   - Net-SNMP: Uma suíte de aplicativos para trabalhar com o SNMP.
+   - Wireshark: Analisador de pacotes para demonstrações práticas.

@@ -1,0 +1,27 @@
+Ativ ED2 Part1
+
+### Desenho Inicial da Árvore AVL antes das Rotações
+
+Observação: Este desenho representa a árvore *antes* de qualquer rotação para balanceamento. As rotações ocorrerão para garantir que a propriedade da árvore AVL seja mantida (diferença de altura entre as subárvores esquerda e direita de no máximo 1).
+
+Sequência de Inserção: 13, 10, 15, 16, 5, 11, 4, 8
+
+Árvore:
+
+      13
+     /  \
+    10  15
+   /  \    \
+  5  11   16
+ / \
+4   8
+
+### Análise:
+
+Desbalanceamento: Após a inserção de 16, o nó 15 fica desbalanceado, pois sua subárvore direita (com apenas o nó 16) é mais alta do que sua subárvore esquerda (vazia). Isso viola a propriedade da árvore AVL.
+
+### Próximos Passos:
+
+	- Rotação Simples à Direita: Para corrigir o desbalanceamento no nó 15, será realizada uma rotação simples à direita, tornando 16 a nova raiz da subárvore com 15 e 16.
+
+	- Obs.: Este é apenas o primeiro passo. Após a rotação, a árvore será reavaliada para verificar se outros nós estão desbalanceados e se novas rotações são necessárias.

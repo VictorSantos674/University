@@ -1,0 +1,18 @@
+AULA 1
+
+### **Questões de Prática**
+
+1. **Operadores Lógicos:**
+   - Qual a diferença entre `LIKE` e `=` no SQL?
+   - Como você usaria o operador `BETWEEN` para consultar valores dentro de um intervalo?
+
+2. **Tipos de Dados:**
+   - Qual a diferença entre `VARCHAR` e `TEXT`? Quando você usaria cada um?
+   - Explique a diferença entre `DATE`, `DATETIME`, e `TIMESTAMP` com exemplos.
+
+3. **Comando CREATE:**
+   - Crie um banco de dados chamado `escola` e uma tabela chamada `alunos` com os seguintes campos: `id`, `nome`, `data_nascimento`, e `nota`.
+
+4. **Comando SELECT:**
+   - Escreva uma consulta para retornar todos os produtos com preço acima de 100.
+   - Crie uma consulta para exibir os clientes que vivem em São Paulo ou Rio de Janeiro.

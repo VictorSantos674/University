@@ -1,0 +1,249 @@
+AULA2
+
+### **1. JOIN em SQL**
+
+Um **JOIN** é uma operação que combina linhas de duas ou mais tabelas com base em uma condição relacionada entre elas. Existem diferentes tipos de JOINs, sendo o mais comum o **INNER JOIN**.
+
+#### **INNER JOIN**
+O **INNER JOIN** retorna apenas as linhas que possuem correspondência entre as duas tabelas. Ou seja, ele mostra apenas as combinações que atendem à condição de união.
+
+**Exemplo:**
+
+Suponha que temos duas tabelas: `professores` e `disciplinas`.
+
+Tabela `professores`:
+| Nome     | Departamento |
+|----------|--------------|
+| João     | Matemática   |
+| Maria    | História     |
+| Ana      | Física       |
+
+Tabela `disciplinas`:
+| Disciplina       | Departamento |
+|------------------|--------------|
+| Álgebra          | Matemática   |
+| História Antiga  | História     |
+| Física Quântica  | Física       |
+
+Ao realizar um **INNER JOIN**:
+
+```sql
+SELECT professores.nome, disciplinas.disciplina
+FROM professores
+INNER JOIN disciplinas ON professores.departamento = disciplinas.departamento;
+```
+
+**Resultado:**
+
+| Nome  | Disciplina       |
+|-------|------------------|
+| João  | Álgebra          |
+| Maria | História Antiga  |
+| Ana   | Física Quântica  |
+
+Neste exemplo, a união acontece quando o campo `departamento` das duas tabelas é igual.
+
+#### **OUTER JOIN**
+O **OUTER JOIN** inclui resultados mesmo quando não há correspondência entre as tabelas. Existem três tipos:
+
+- **LEFT OUTER JOIN**: Retorna todas as linhas da tabela à esquerda, mesmo que não haja correspondência na tabela à direita.
+- **RIGHT OUTER JOIN**: Retorna todas as linhas da tabela à direita, mesmo que não haja correspondência na tabela à esquerda.
+- **FULL OUTER JOIN**: Retorna todas as linhas quando há correspondência em uma ou ambas as tabelas.
+
+No documento, o **OUTER JOIN** será abordado mais detalhadamente no futuro.
+
+---
+
+### **2. Funções Agregadas**
+
+As **funções agregadas** processam um conjunto de valores e retornam um único valor.
+
+- **AVG()**: Retorna a média dos valores.
+  ```sql
+  SELECT AVG(salario) FROM funcionarios;
+  ```
+
+- **MAX()**: Retorna o valor máximo de um conjunto.
+  ```sql
+  SELECT MAX(preco) FROM produtos;
+  ```
+
+- **MIN()**: Retorna o valor mínimo de um conjunto.
+  ```sql
+  SELECT MIN(idade) FROM clientes;
+  ```
+
+- **SUM()**: Retorna a soma de todos os valores.
+  ```sql
+  SELECT SUM(vendas) FROM pedidos;
+  ```
+
+- **COUNT()**: Retorna o número de linhas que correspondem a um critério.
+  ```sql
+  SELECT COUNT(*) FROM clientes WHERE cidade = 'São Paulo';
+  ```
+
+---
+
+### **3. Funções de Agrupamento (GROUP BY)**
+
+A cláusula **GROUP BY** permite agrupar linhas que compartilham um valor comum em uma ou mais colunas, e então aplicar funções agregadas sobre esses grupos.
+
+**Exemplo 1 - Contar clientes por país:**
+
+```sql
+SELECT pais, COUNT(*) AS total_clientes
+FROM clientes
+GROUP BY pais;
+```
+
+Aqui, os clientes são agrupados por país, e o total de clientes por país é contado.
+
+**Exemplo 2 - Média de frete por país:**
+
+```sql
+SELECT pais, AVG(frete) AS media_frete
+FROM pedidos
+GROUP BY pais;
+```
+
+Neste exemplo, calculamos a média de frete para cada país.
+
+**Atenção:** Quando se usa `GROUP BY`, apenas as colunas agrupadas ou que utilizam funções agregadas podem ser selecionadas.
+
+---
+
+### **4. Subqueries (Subconsultas)**
+
+As **subqueries** são consultas aninhadas dentro de outra consulta principal. Elas são usadas quando você precisa utilizar o resultado de uma consulta dentro de outra.
+
+#### **Tipos de Subqueries:**
+
+- **Subqueries em predicados de comparação:**
+  ```sql
+  SELECT nome
+  FROM clientes
+  WHERE cidade = (SELECT cidade FROM fornecedores WHERE nome = 'Fornecedor A');
+  ```
+
+Aqui, buscamos o nome dos clientes que moram na mesma cidade do "Fornecedor A".
+
+- **Subqueries com `IN`:**
+  ```sql
+  SELECT nome
+  FROM clientes
+  WHERE cidade IN (SELECT cidade FROM fornecedores);
+  ```
+
+Essa consulta retorna o nome dos clientes que moram nas mesmas cidades onde existem fornecedores.
+
+- **Subqueries com `EXISTS`:**
+  ```sql
+  SELECT nome
+  FROM clientes
+  WHERE EXISTS (SELECT * FROM pedidos WHERE clientes.id = pedidos.id_cliente);
+  ```
+
+Retorna o nome dos clientes que têm pedidos cadastrados.
+
+---
+
+### **5. Exercícios de Prática**
+
+Agora que você entendeu os conceitos básicos e avançados de SQL, podemos praticar com alguns exercícios sugeridos no documento.
+
+#### **Exercício 1:**
+Crie um banco de dados com as tabelas a seguir:
+
+Tabela `Funcionario`:
+```sql
+CREATE TABLE Funcionario (
+  id INT PRIMARY KEY,
+  nome VARCHAR(100),
+  sexo CHAR(1),
+  cargo VARCHAR(50),
+  salario DECIMAL(10, 2)
+);
+```
+
+Tabela `Fornecedor`:
+```sql
+CREATE TABLE Fornecedor (
+  id INT PRIMARY KEY,
+  nome VARCHAR(100),
+  cidade VARCHAR(50),
+  produto VARCHAR(100)
+);
+```
+
+Tabela `Pedido`:
+```sql
+CREATE TABLE Pedido (
+  id INT PRIMARY KEY,
+  id_funcionario INT,
+  id_cliente INT,
+  descricao TEXT,
+  observacao TEXT,
+  cidade VARCHAR(50),
+  produto VARCHAR(100),
+  data DATE,
+  FOREIGN KEY (id_funcionario) REFERENCES Funcionario(id),
+  FOREIGN KEY (id_cliente) REFERENCES Cliente(id)
+);
+```
+
+Tabela `Cliente`:
+```sql
+CREATE TABLE Cliente (
+  id INT PRIMARY KEY,
+  nome VARCHAR(100),
+  idade INT,
+  sexo CHAR(1),
+  renda DECIMAL(10, 2),
+  cidade VARCHAR(50)
+);
+```
+
+#### **Consultas SQL:**
+
+1. **Liste a quantidade de pedidos feitos por funcionários:**
+   ```sql
+   SELECT id_funcionario, COUNT(*) AS total_pedidos
+   FROM Pedido
+   GROUP BY id_funcionario;
+   ```
+
+2. **Liste a quantidade de clientes por país e cidade:**
+   ```sql
+   SELECT cidade, COUNT(*) AS total_clientes
+   FROM Cliente
+   GROUP BY cidade;
+   ```
+
+3. **Liste o código do fornecedor, a categoria, a média de preço, o preço máximo e mínimo dos produtos agrupados por fornecedor e categoria:**
+   ```sql
+   SELECT Fornecedor.id, Produto.categoria, AVG(Produto.preco) AS media_preco, 
+          MAX(Produto.preco) AS preco_max, MIN(Produto.preco) AS preco_min
+   FROM Fornecedor
+   JOIN Produto ON Fornecedor.id = Produto.id_fornecedor
+   GROUP BY Fornecedor.id, Produto.categoria;
+   ```
+
+4. **Liste a quantidade de pedidos feitos por funcionários de 20 a 30 anos:**
+   ```sql
+   SELECT Funcionario.nome, COUNT(*) AS total_pedidos
+   FROM Funcionario
+   JOIN Pedido ON Funcionario.id = Pedido.id_funcionario
+   WHERE Funcionario.idade BETWEEN 20 AND 30
+   GROUP BY Funcionario.nome;
+   ```
+
+---
+
+### **Questões para Praticar**
+
+1. Qual a diferença entre **INNER JOIN** e **LEFT OUTER JOIN**? Dê exemplos práticos.
+2. Escreva uma consulta que retorne a soma total dos pedidos de cada cidade.
+3. O que acontece se você tentar usar uma coluna não agrupada em uma consulta com `GROUP BY` sem envolvê-la em uma função de agregação? Dê um exemplo.
+4. Escreva uma subquery que retorne os nomes dos clientes que não possuem pedidos cadastrados.
+5. Crie uma consulta que utilize a função `AVG` para calcular a média de salário de todos os funcionários com cargo de "Gerente".

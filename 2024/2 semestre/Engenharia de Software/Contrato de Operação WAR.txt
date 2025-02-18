@@ -1,0 +1,62 @@
+Contrato de Operação WAR
+
+---
+
+### Contrato de Operação: **cumprirObjetivoConquistaContinentes**
+
+**Responsabilidade:** Garantir que o jogador cumpra o objetivo de conquistar os territórios necessários de um ou mais continentes e que o objetivo seja registrado como cumprido ao final da operação.
+
+---
+
+#### Informações:
+
+- **Nome:** cumprirObjetivoConquistaContinentes
+- **Atores:** Jogador, Sistema de Jogo (War)
+- **Descrição:** O contrato descreve a operação do sistema para monitorar e validar se o jogador cumpriu o objetivo relacionado à conquista de continentes. A operação inicia quando o jogador controla todos os territórios necessários e se encerra com o objetivo marcado como completo.
+
+---
+
+#### Assinatura da Operação:
+
+`cumprirObjetivoConquistaContinentes(jogadorID: Int, objetivoID: Int): Boolean`
+
+---
+
+#### Pré-condições:
+
+1. O jogador está participando da partida e tem pelo menos um território sob seu controle.
+2. O jogador possui um objetivo ativo que envolve a conquista de continentes.
+3. Os continentes especificados no objetivo não estão completamente sob controle de um único jogador.
+4. O jogador tem controle suficiente sobre os territórios necessários para validar a conquista.
+
+---
+
+#### Pós-condições:
+
+1. **[Novo Objetivo Cumprido]** O objetivo de conquista de continentes é marcado como cumprido se o jogador tomou controle de todos os territórios do(s) continente(s) especificado(s).
+   
+2. **[Progresso de Objetivo Atualizado]** O progresso do objetivo de conquista de continentes é atualizado no sistema, e o sistema marca o objetivo como "completado" se for validado que todos os territórios foram conquistados.
+   
+3. **[Registro de Vitória Parcial]** Se o objetivo for cumprido, o sistema registra no histórico de objetivos do jogador que ele completou esse objetivo.
+
+4. **[Notificação de Cumprimento]** O jogador é notificado visualmente ou via mensagem que o objetivo de conquista foi completado com sucesso.
+
+---
+
+#### Cenário de Sucesso:
+
+1. O jogador conquista todos os territórios de um continente.
+2. O sistema verifica que o objetivo foi cumprido.
+3. O sistema atualiza o estado do objetivo e notifica o jogador da conclusão.
+
+---
+
+#### Exceções:
+
+1. **[Tentativa com Territórios Insuficientes]** Se o jogador tenta completar o objetivo sem ter conquistado todos os territórios necessários, a operação falha e o sistema informa que ainda restam territórios a serem conquistados.
+   
+2. **[Erro no Registro de Progresso]** Se o sistema não conseguir atualizar o progresso do objetivo, o jogador é informado de um erro técnico, e a operação não prossegue até que o problema seja corrigido.
+
+---
+
+Esse contrato de operação pode ser utilizado para garantir que o sistema siga as regras de verificação e conclusão de objetivos de continentes dentro do jogo WAR.

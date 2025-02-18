@@ -1,0 +1,110 @@
+AULA 5
+
+Vou explicar de forma detalhada e abrangente os tópicos apresentados no documento "Aula 5 – Roteamento Unicast Dinâmico RIP" de **Redes de Computadores II**:
+
+---
+
+### **Objetivo da Aula**
+O objetivo desta aula é proporcionar o entendimento dos seguintes pontos:
+1. **Conceito de Sistemas Autônomos (AS)**: Explicação do que é um Sistema Autônomo na Internet.
+2. **Roteamento IGP e EGP**: Protocolo de roteamento interior (IGP) e exterior (EGP).
+3. **Algoritmo de Roteamento Vetor-Distância**: Funcionamento do algoritmo Vetor-Distância (Bellman-Ford).
+4. **Estudo do Protocolo RIP**: Explicação do protocolo de roteamento dinâmico RIP (Routing Information Protocol).
+
+---
+
+### **1. Sistema Autônomo (AS)**
+Um **Sistema Autônomo (AS)** é um conjunto de redes e roteadores que estão sob o controle de uma **única autoridade administrativa**. Segundo a **RFC 1930**, ele é definido como um grupo de roteadores que compartilham a mesma política de roteamento e utilizam **protocolos internos (IGP)** para comunicação interna e **protocolos externos (EGP)** para comunicação com outros ASs. 
+
+- **Exemplo**: Empresas ou organizações grandes podem ter seu próprio AS para gerenciar sua infraestrutura de rede.
+- **Identificação do AS**: Cada AS tem um número único (16 bits), variando entre 1 e 65535, atribuído pela **IANA** (Internet Assigned Numbers Authority).
+
+---
+
+### **2. Classificação dos Protocolos de Roteamento**
+Os protocolos de roteamento são divididos em duas categorias:
+- **IGP (Interior Gateway Protocol)**: Usado para comunicação **dentro de um único AS**. Exemplos:
+  - **RIP (Routing Information Protocol)**: Utiliza contagem de saltos (hops).
+  - **OSPF (Open Shortest Path First)**: Baseado no algoritmo de **estado de enlace**.
+- **EGP (Exterior Gateway Protocol)**: Utilizado para comunicação entre **diferentes ASs**. Exemplos:
+  - **BGP (Border Gateway Protocol)**: Principal protocolo usado na internet atualmente para roteamento entre ASs.
+
+---
+
+### **3. Roteamento Dinâmico**
+No **roteamento dinâmico**, as tabelas de roteamento são **atualizadas automaticamente** com base nas informações trocadas entre os roteadores. Isso é especialmente útil em redes grandes, onde a configuração manual seria inviável. As principais métricas usadas no roteamento dinâmico são:
+
+- **Contagem de hops (saltos)**: O número de roteadores que um pacote deve atravessar até alcançar o destino.
+- **Largura de banda (Bandwidth)**: A capacidade do meio de transmissão em Mbps.
+- **Atraso (Delay)**: O tempo que um pacote leva para ser transmitido por um meio (em milissegundos).
+- **Confiabilidade**: A probabilidade de que os dados sejam entregues com sucesso.
+- **Carga**: O nível de utilização de uma rota.
+- **MTU (Unidade Máxima de Transmissão)**: O maior tamanho de pacote que pode ser transmitido por um meio.
+- **Ticks**: Valor que representa o tempo de delay.
+
+---
+
+### **4. Algoritmo de Roteamento Vetor-Distância (Bellman-Ford)**
+O **algoritmo Vetor-Distância** é um dos algoritmos fundamentais de roteamento dinâmico. Ele funciona da seguinte maneira:
+1. **Inicialização**: Cada roteador mantém uma tabela de roteamento com informações sobre as redes diretamente conectadas a ele.
+2. **Divulgação periódica**: Cada roteador periodicamente envia sua tabela de rotas para os roteadores vizinhos.
+3. **Atualização de Tabelas**: Quando um roteador recebe uma tabela de rotas de um vizinho, ele compara essas rotas com as suas próprias. Se uma rota divulgada for melhor (ou seja, tiver uma métrica menor), a rota é atualizada.
+   - Se a métrica for **menor**, a rota é substituída.
+   - Se a métrica for **igual**, a rota divulgada é ignorada.
+   - Se a métrica for **maior**, a rota divulgada é rejeitada.
+
+A **regra geral** é: **menor caminho, melhor rota**.
+
+---
+
+### **5. Tabela de Roteamento**
+Uma **tabela de roteamento** contém informações sobre como alcançar redes específicas. Cada entrada na tabela inclui a **rede de destino**, o **próximo salto (gateway)** e a **métrica** (número de hops ou custo). Inicialmente, as tabelas contêm apenas as redes diretamente conectadas, mas à medida que os roteadores trocam informações, as tabelas se expandem para incluir rotas para outras redes.
+
+---
+
+### **6. Protocolo de Roteamento RIP (Routing Information Protocol)**
+O **RIP** é um **protocolo de roteamento dinâmico** baseado no algoritmo de **vetor-distância**. Ele foi projetado para redes pequenas, sendo um dos protocolos mais antigos de roteamento dinâmico. Suas principais características são:
+
+- **Utiliza contagem de hops** como métrica de roteamento.
+- O número máximo de hops é **15**. Se a contagem exceder 15, o destino é considerado inalcançável.
+- Cada roteador **divulga sua tabela de rotas** a cada 30 segundos via **multicast** (endereço 224.0.0.9).
+- O tempo máximo de atualização de uma rota é **180 segundos**.
+
+**Vantagens** do RIP:
+- **Simplicidade**: Fácil de configurar e funciona bem em redes pequenas.
+- **Baixo consumo de largura de banda**: Os pacotes RIP são pequenos.
+
+**Desvantagens**:
+- **Limite de 15 hops**: Não é adequado para redes grandes.
+- **Problemas de estabilidade**: O protocolo pode ter problemas com loops de roteamento.
+- **Não suporta rotas alternativas**: RIP mantém apenas a melhor rota.
+
+---
+
+### **7. Problemas e Soluções no RIP**
+Um dos problemas clássicos do RIP é a **contagem ao infinito**. Isso acontece quando a rota para uma rede falha, e os roteadores continuam a aumentar a métrica de hops indefinidamente, sem perceber que a rede está inacessível.
+
+**Soluções** para esse problema incluem:
+- **Horizonte Dividido (Split Horizon)**: O roteador não informa uma rota de volta ao roteador de onde a rota foi aprendida.
+- **Horizonte Dividido com Inversão Envenenada**: O roteador informa ao vizinho que a rota agora tem métrica 16 (inalcançável).
+- **Atualizações Imediatas (Triggered Updates)**: Quando uma rede se torna indisponível, o roteador imediatamente informa os vizinhos, sem esperar pelo próximo intervalo de 30 segundos.
+
+---
+
+### **8. Pacote RIP**
+O RIP usa o protocolo **UDP** na **porta 520** para enviar mensagens de atualização de rota. Cada pacote RIP contém até **25 entradas de rota (RTE)**. As informações principais dentro de um pacote RIP são:
+
+- **Comando**: Indica o tipo de mensagem (1 = Pedido, 2 = Resposta).
+- **Endereço IP**: O endereço da rede que está sendo anunciada.
+- **Máscara de sub-rede**: A máscara da rede anunciada.
+- **Próximo hop**: O endereço IP do próximo roteador no caminho.
+- **Métrica**: O custo associado à rota (entre 1 e 15).
+
+---
+
+### **Conclusão**
+O protocolo RIP é uma solução simples e eficiente para redes pequenas, mas suas limitações o tornam inadequado para redes maiores ou mais complexas. O conceito de **Sistemas Autônomos (AS)** é crucial para a internet, permitindo que diferentes redes se comuniquem usando protocolos de roteamento dinâmico. O algoritmo **Vetor-Distância (Bellman-Ford)** é a base do RIP, garantindo que os pacotes de dados encontrem o caminho mais curto até o destino.
+
+---
+
+Se precisar de mais detalhes sobre algum conceito ou se quiser exemplos práticos de como implementar o RIP ou configurar um AS, estou à disposição!

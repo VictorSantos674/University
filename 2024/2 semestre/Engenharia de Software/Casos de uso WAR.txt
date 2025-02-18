@@ -1,0 +1,110 @@
+Casos de uso WAR - Todos o Objetivos Relacionados à Conquista de Territórios e Continentes
+
+Caso de Uso 1: Conquista de Territórios
+ Nome: **Conquistar Território**
+**Ator Principal**: Jogador  
+**Pré-condições**: O jogador deve possuir pelo menos um território adjacente ao território inimigo.  
+**Objetivo**: Conquistar um território inimigo para aumentar o número de territórios controlados.  
+**Descrição**:
+1. O jogador identifica um território inimigo adjacente ao seu.
+2. O jogador posiciona tropas no território a partir do qual deseja atacar.
+3. O jogador rola os dados para iniciar o combate, utilizando no máximo 3 dados de ataque.
+4. O defensor (outro jogador) rola no máximo 2 dados de defesa.
+5. Comparação dos resultados dos dados:
+   - O jogador com o dado mais alto vence a batalha correspondente.
+   - Para cada vitória, uma tropa do perdedor é removida.
+6. Caso o atacante elimine todas as tropas do território inimigo, o jogador conquista o território e move suas tropas para ele.
+7. O jogador que conquistar pelo menos um território durante seu turno recebe uma carta ao final da rodada.
+8. O jogo continua até o objetivo ser cumprido ou o turno terminar.
+
+**Exceções**:
+- Se o jogador não tiver tropas suficientes para atacar, ele não pode tentar a conquista.
+- Se o território defendido permanecer com pelo menos uma tropa, o ataque falha.
+
+
+Caso de Uso 2: Conquista de Continente
+ Nome: **Conquistar Continente**
+**Ator Principal**: Jogador  
+**Pré-condições**: O jogador deve controlar todos os territórios de um continente.  
+**Objetivo**: Conquistar todos os territórios de um continente para receber tropas extras.  
+**Descrição**:
+1. O jogador verifica o status dos territórios no continente-alvo.
+2. O jogador planeja uma sequência de ataques a territórios inimigos no continente, coordenando a quantidade de tropas e a rota de ataque.
+3. Para cada território inimigo no continente, o jogador repete as fases de ataque (roda dados e compara resultados).
+4. Ao conquistar todos os territórios do continente, o jogador recebe um bônus de tropas no início de cada turno subsequente enquanto mantiver o controle do continente:
+   - Ásia: +7 tropas
+   - América do Norte: +5 tropas
+   - Europa: +5 tropas
+   - África: +3 tropas
+   - América do Sul: +2 tropas
+   - Oceania: +2 tropas
+5. O jogador distribui essas tropas extras ao início de cada turno, reforçando o continente conquistado ou utilizando-as em outros territórios.
+6. O jogo prossegue, e o jogador pode usar essas tropas adicionais para expandir seu controle ou defender fronteiras.
+
+**Exceções**:
+- Se outro jogador recapturar um território no continente, o bônus de tropas é perdido.
+- O jogador pode não ter tropas suficientes para atacar todos os territórios em um único turno, precisando planejar ao longo de vários turnos.
+
+---
+
+Caso de Uso 3: Defesa de Continente
+ Nome: **Defender Continente**
+**Ator Principal**: Jogador  
+**Pré-condições**: O jogador deve controlar todos os territórios de um continente.  
+**Objetivo**: Manter o controle de todos os territórios do continente para garantir tropas extras nos turnos subsequentes.  
+**Descrição**:
+1. O jogador reforça os territórios de fronteira do continente controlado, posicionando tropas de forma estratégica.
+2. Caso um inimigo ataque, o jogador utiliza os dados de defesa (até 2 dados) para defender seus territórios.
+3. Se o jogador perder um território, ele pode planejar um contra-ataque no próximo turno para reconquistar o território perdido.
+4. Enquanto o jogador mantiver o controle de todos os territórios do continente, ele recebe tropas extras no início de cada turno.
+5. O jogador deve equilibrar a defesa entre múltiplos territórios, considerando a ameaça de ataques vindos de diferentes direções.
+
+**Exceções**:
+- Se o jogador perder um território, ele deve reconquistá-lo para recuperar o bônus de tropas.
+- Se o jogador não tiver tropas suficientes para uma defesa eficaz, pode perder o continente rapidamente.
+
+
+Caso de Uso 4: Aliança Temporária para Conquista de Continente
+ Nome: **Formar Aliança Temporária para Conquista**
+**Ator Principal**: Jogador e Aliado  
+**Pré-condições**: Ambos os jogadores precisam de territórios ou recursos de outro jogador para completar seus respectivos objetivos.  
+**Objetivo**: Formar uma aliança temporária com outro jogador para conquistar territórios de um terceiro jogador e dividir o controle de um continente.  
+**Descrição**:
+1. O jogador discute com um aliado em potencial sobre um benefício mútuo (por exemplo, atacar um jogador mais forte ou controlar um continente).
+2. O jogador e o aliado combinam ataques coordenados em diferentes territórios do mesmo continente.
+3. O jogador e o aliado executam seus ataques nos respectivos turnos, garantindo que os territórios sejam conquistados de forma a beneficiar ambos.
+4. Após a conquista, o jogador mantém parte do continente e reforça suas defesas.
+5. O jogador pode usar essa aliança temporária até que ambos tenham atingido seus objetivos, podendo ou não trair o aliado posteriormente.
+
+**Exceções**:
+- O aliado pode não cooperar, causando falhas na estratégia.
+- O terceiro jogador pode contra-atacar e recapturar territórios, rompendo a aliança antes do objetivo ser atingido.
+
+### Interessados e Interesses:
+
+1. **Jogador:**
+   - **Interesse:** Completar seu objetivo estratégico e avançar no jogo, conquistando continentes para aumentar seu poder e recursos.
+   - **Motivação:** Cumprir o objetivo relacionado à conquista de continentes é um passo crucial para atingir a vitória, além de oferecer benefícios táticos, como receber exércitos extras por controlar continentes completos.
+
+2. **Sistema de Jogo (WAR):**
+   - **Interesse:** Garantir que o objetivo de conquista de continentes seja monitorado de acordo com as regras do jogo e que o progresso do jogador seja registrado corretamente.
+   - **Motivação:** Facilitar o andamento correto do jogo, validando automaticamente se os objetivos dos jogadores foram cumpridos, proporcionando uma experiência justa e sem erros.
+
+3. **Demais Jogadores:**
+   - **Interesse:** Manter controle sobre seus territórios e impedir que um oponente complete seu objetivo.
+   - **Motivação:** Evitar que um jogador domine continentes, o que lhe concederia vantagens significativas, como receber exércitos adicionais.
+
+
+### Regras de Negócio Específicas:
+
+1. **Regra de Conquista de Continentes:**
+   - O objetivo será considerado cumprido quando o jogador controlar todos os territórios de um ou mais continentes especificados no seu objetivo.
+   
+2. **Regra de Verificação Automática de Objetivos:**
+   - O sistema verifica, ao final de cada jogada do jogador, se todos os territórios de um continente especificado foram conquistados, e só então marca o objetivo como cumprido.
+
+3. **Regra de Recebimento de Exércitos por Continentes:**
+   - Uma vez que o jogador conquista um continente, ele passa a receber exércitos adicionais no início de cada rodada, proporcional ao controle total daquele continente (em função da quantidade de territórios no continente).
+
+4. **Regra de Atribuição de Objetivos:**
+   - O objetivo relacionado à conquista de continentes é atribuído de forma aleatória a um jogador no início do jogo, garantindo que os continentes-alvo não sejam os mesmos para todos os jogadores.

@@ -1,0 +1,29 @@
+Questão 02
+Utilize o padrão de projeto AbstractFactory para possibilitar a criação de estratégias OperationSum e OperationMultiplication através da interface FactoryOperations. Para a FactoryOperationsSumThenMultiplication, os métodos createBottomOperation e createTopOperation criam OperationSum e OperationMultiplication, respectivamente. Para a FactoryOperationsMultiplicationThenSum, os métodos createBottomOperation e createTopOperation criam OperationMultiplication e OperationSum, respectivamente.
+
+drawing
+drawing
+drawing
+
+
+Questão 03
+Utilize o padrão Composite para encapsular uma árvore de operações tratando objetos terminais ResultLeaf e composições de objetos ResultComposite de maneira uniforme através de uma interface comum ResultComponent. Implemente a classe ResultBuilder que recebe uma FactoryOperations no construtor e que, a partir do método
+
+ResultComponent buildOperations(double[] leftValues, double[] rightValues)
+, retorna uma árvore de operações ResultComponent constituída de um nó superior (ResultComposite) que contém 2 subárvores inferiores: uma à esquerda (ResultComposite) e uma à direita (ResultComposite). Cada uma dessas subárvores contém múltiplos nós do tipo folha (ResultLeaf) com os valores leftValues e rightValues, respectivamente.
+
+drawing
+drawing
+
+
+Questão 04
+Utilize o padrão Observer para que alterações em ResultComponent propaguem-se através de notificações apenas para os ResultComponent dependentes, manténdo resultados de todos ResultComponent consistentes sem que seja necessário recalcular o resultado dos ResultComponent de toda a árvore. Para isso, ResultComponent deve implementar as interfaces ResultSubject e ResultObserver. A interface ResultSubject define os métodos
+
+void attach(ResultObserver observer)
+void detach(ResultObserver observer)
+void notifyObservers(ResultComponent resultComponent)
+A interface ResultObserver define o método
+
+void update(ResultComponent resultComponent). 
+drawing
+drawing

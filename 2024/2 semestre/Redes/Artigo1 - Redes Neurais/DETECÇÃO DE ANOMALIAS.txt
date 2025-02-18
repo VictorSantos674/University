@@ -1,0 +1,20 @@
+REDES NEURAIS - DETECÇÃO DE ANOMALIAS
+
+No contexto do documento, a detecção de anomalias é um aspecto crucial da segurança em redes automotivas, especialmente em relação à proteção contra ataques cibernéticos. As redes neurais, particularmente as redes neurais convolucionais (CNN), são aplicadas nesse processo de detecção de anomalias de várias maneiras.
+
+### 1. **Aprendizado de Padrões Normais e Anômalos**
+As redes neurais são treinadas em conjuntos de dados que contêm tanto comportamentos normais quanto anômalos. Durante o treinamento, a rede aprende a identificar padrões que caracterizam o tráfego de rede normal. Quando um novo pacote de dados é recebido, a rede pode compará-lo com os padrões aprendidos. Se o pacote se desviar significativamente do que foi aprendido como normal, ele é classificado como uma anomalia.
+
+### 2. **Extração de Características**
+As CNNs são particularmente eficazes na extração de características relevantes dos dados de entrada. No caso de redes automotivas, isso pode incluir a análise de pacotes de dados em diferentes camadas do protocolo. As camadas convolucionais da rede podem identificar características complexas e sutis que podem indicar um ataque, como padrões de tráfego incomuns ou sequências de pacotes que não seguem o comportamento esperado.
+
+### 3. **Detecção em Tempo Real**
+Uma das vantagens das redes neurais é sua capacidade de realizar inferências em tempo real. O documento destaca que, embora modelos baseados em deep learning possam ter um alto custo computacional, a implementação de redes neurais mais leves e adaptadas pode permitir a detecção de anomalias em tempo real, mesmo em plataformas de baixo custo, como o Raspberry Pi. Isso é crucial para aplicações automotivas, onde a resposta rápida a intrusões é vital para a segurança do veículo.
+
+### 4. **Comparação com Modelos Tradicionais**
+O documento menciona que a abordagem proposta foi comparada com um modelo de CNN tradicional. A técnica proposta alcançou um tempo de detecção de intrusão de 620μs por amostra, que é significativamente mais rápido do que o modelo CNN convencional, que apresentava um tempo de detecção mais longo. Essa eficiência é fundamental para garantir que o sistema de detecção de anomalias possa operar dentro dos limites de tempo exigidos para a segurança em veículos.
+
+### 5. **Desafios e Futuras Direções**
+Embora as redes neurais ofereçam vantagens significativas na detecção de anomalias, o documento também discute os desafios associados, como a necessidade de manter métricas de classificação altas enquanto se reduz o tempo de inferência. O futuro da pesquisa pode incluir a exploração de arquiteturas de redes neurais mais eficientes, como convoluções separáveis em profundidade e transformadores leves, que podem ser adaptadas para operar em hardware limitado, mantendo a eficácia na detecção de anomalias [T1], [T4], [T6].
+
+Em resumo, as redes neurais são aplicadas na detecção de anomalias em redes automotivas através do aprendizado de padrões, extração de características, detecção em tempo real e comparação com modelos tradicionais, enfrentando desafios que podem ser abordados em pesquisas futuras.
